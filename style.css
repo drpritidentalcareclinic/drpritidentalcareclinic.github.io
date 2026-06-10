@@ -80,9 +80,10 @@ nav {
   background: linear-gradient(135deg, var(--navy) 0%, #1550a8 50%, #1a6bbf 100%);
   display: flex; align-items: center;
   padding: 100px 5% 60px;
-  position: relative; overflow: hidden;
+  position: relative; overflow: visible;
   width: 100%;
 }
+
 .hero::before {
   content: '';
   position: absolute; top: -100px; right: -100px;
@@ -166,6 +167,41 @@ nav {
   padding: 8px 14px; border-radius: 10px;
   font-size: 0.8rem; margin: 4px;
   display: inline-block;
+}
+
+/* =====================
+   HERO VIDEO
+   ===================== */
+.hero-video-wrap {
+  position: absolute;
+  right: -280px;
+  top: -280px;
+  transform: translateY(-50%);
+  width: 380px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+  border: 2px solid rgba(255,255,255,0.18);
+  animation: fadeUp 0.8s 0.3s ease both;
+  z-index: 2;
+}
+.hero-video {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+  display: block;
+  border-radius: 24px;
+}
+.hero-video-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(13,59,122,0.85));
+  color: var(--white);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 28px 18px 14px;
+  text-align: center;
 }
 
 /* =====================
@@ -589,6 +625,21 @@ footer {
   .hero-stats { justify-content: center; flex-wrap: wrap; gap: 24px; }
   .hero-visual { display: none; }
 
+  /* VIDEO — show on tablet, stacked below text */
+  .hero-video-wrap {
+    display: block;
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    max-width: 400px;
+    margin: 30px auto 0;
+  }
+  .hero-video {
+    height: 300px;
+  }
+
   /* INFO STRIP */
   .info-cards { grid-template-columns: 1fr; }
   .info-card {
@@ -633,12 +684,31 @@ footer {
    RESPONSIVE — MOBILE (max 560px)
    ===================== */
 @media (max-width: 560px) {
+  
 
   /* GENERAL */
   section { padding: 60px 5%; }
 
   /* HERO */
-  .hero { padding: 90px 5% 50px; text-align: center; }
+  .hero-video-wrap {
+  display: block !important;   /* force show */
+  position: relative !important;
+  right: auto !important;
+  top: auto !important;
+  transform: none !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 24px auto 0 !important;
+  border-radius: 16px;
+  z-index: 3;
+}
+
+.hero-video {
+  height: 530px !important;
+}
+
+  /* HERO */
+  .hero { padding: 90px 5% 50px; text-align: center; overflow: visible; min-height: auto; }
   .hero-content { text-align: center; }
   .hero-buttons {
     flex-direction: column;
@@ -656,6 +726,22 @@ footer {
     gap: 20px;
   }
   .stat { text-align: center; min-width: 90px; }
+
+  /* VIDEO — show on mobile too */
+  .hero-video-wrap {
+    display: block;
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    margin: 24px auto 0;
+    border-radius: 16px;
+  }
+  .hero-video {
+    height: 220px;
+  }
 
   /* INFO STRIP */
   .info-card { padding: 22px 20px; gap: 14px; }
